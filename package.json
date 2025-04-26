@@ -12,5 +12,8 @@
   "type": "commonjs",
   "dependencies": {
     "three": "^0.175.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-glsl": "^2.14.4"
   }
 }

@@ -1,4 +1,6 @@
 import * as THREE from "three";
+import fragment from "./shaders/fragment.glsl";
+import vertex from "./shaders/vertex.glsl";
 
 export default class Sketch {
   constructor() {
@@ -27,8 +29,16 @@ export default class Sketch {
   addMesh() {
     this.geometry = new THREE.PlaneGeometry(1, 1);
     this.material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide });
+    this.material = new THREE.ShaderMaterial({
+      fragmentShader: fragment,
+      vertexShader: vertex,
+      uniforms: {
+        progress: { type: "f", value: 0 },
+      },
+      side: THREE.DoubleSide,
+    });
 
-    this.mesh = new THREE.Mesh(this.geometry, this.material);
+    this.mesh = new THREE.Points(this.geometry, this.material);
     this.scene.add(this.mesh);
   }
 
